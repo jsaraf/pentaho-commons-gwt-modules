@@ -597,7 +597,7 @@ div#promptPanel div.prompt-panel {
 }
 
 div#toppanel {
-  margin-top: 20px;
+  margin-top: unset;
 }
 
 div.parameter div.parameter-label {
@@ -605,7 +605,13 @@ div.parameter div.parameter-label {
 }
 
 div#promptPanel div.parameter {
-  margin-bottom: 20px;
+  margin-bottom: unset;
+}
+
+.parameter-container > tbody > tr > td > div > table > tbody {
+  gap: var(--dialog-vertical-gap);
+  display: flex;
+  flex-direction: column;
 }
 
 div#reportControlPanel {
