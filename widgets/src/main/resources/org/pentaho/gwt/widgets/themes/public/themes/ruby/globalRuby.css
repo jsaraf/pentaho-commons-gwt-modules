@@ -609,7 +609,7 @@ div#promptPanel div.parameter {
 }
 
 .parameter-container > tbody > tr > td > div > table > tbody {
-  gap: var(--dialog-vertical-gap);
+  gap: var(--layout-gap-v) var(--layout-gap-h);
   display: flex;
   flex-direction: column;
 }
@@ -1340,6 +1340,10 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
   margin-left: 10px;
 }
 
+.inner-button-wrapper > tbody > tr > td:first-child > .pentaho-button#okButton-run-in-background {
+  margin-right: var(--layout-gap-h) !important;
+}
+
 .pentaho-dialog .button-panel button,
 .pentaho-dialog .button-panel button:link,
 .pentaho-dialog .button-panel button:visited,
@@ -1406,7 +1410,7 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
 }
 
 button#schedule-dialog-select-button {
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px 4px 4px 4px;
   padding: 0 20px;
   height: 33px;
 }
@@ -9069,7 +9073,7 @@ body.bootstrap .modal.confirmationDialog .dialog div.body {
   outline: var(--focus-ring) !important;
 }
 
-#refreshBrowserIcon:focus-visible {
+#refreshBrowserIcon {
   margin: var(--focus-ring-padding);
 }
 

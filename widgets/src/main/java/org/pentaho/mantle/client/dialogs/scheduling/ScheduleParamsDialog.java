@@ -132,8 +132,6 @@ public class ScheduleParamsDialog extends AbstractWizardDialog {
 
     wizardDeckPanel.getElement().getParentElement().addClassName( "schedule-dialog-content" );
     wizardDeckPanel.getElement().getParentElement().removeClassName( "dialog-content" );
-
-//    setSize( "650px", "450px" );
     addStyleName( "schedule-params-dialog" );
   }
 

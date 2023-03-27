@@ -46,11 +46,9 @@ import com.google.gwt.user.client.ui.CaptionPanel;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 public abstract class ScheduleOutputLocationDialog extends PromptDialogBox {
   private String filePath;
@@ -167,7 +165,6 @@ public abstract class ScheduleOutputLocationDialog extends PromptDialogBox {
         selectFolder.setCallback( new IDialogCallback() {
           public void okPressed() {
             setScheduleLocation( selectFolder.getSelectedPath() );
-
           }
 
           public void cancelPressed() {
@@ -221,9 +218,10 @@ public abstract class ScheduleOutputLocationDialog extends PromptDialogBox {
     content.getParent().setHeight( "100%" );
 
     okButton.getParent().getParent().setStyleName( "button-panel" );
+    okButton.getElement().setAttribute( "id", "okButton-run-in-background" );
 
     updateButtonState();
-    setSize( "650px", "450px" );
+
 
     validateScheduleLocationTextBox();
   }
