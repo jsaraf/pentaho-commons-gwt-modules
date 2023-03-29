@@ -98,9 +98,6 @@ public class ScheduleParamsDialog extends AbstractWizardDialog {
     if ( isEmailConfValid ) {
       finishButton.setText( Messages.getString( "next" ) );
     }
-    setResponsive( true );
-    setSizingMode( DialogSizingMode.FILL_VIEWPORT_WIDTH );
-    setWidthCategory( DialogWidthCategory.SMALL );
   }
 
   @Override
@@ -112,6 +109,10 @@ public class ScheduleParamsDialog extends AbstractWizardDialog {
   }
 
   public void initDialog() {
+    setResponsive( true );
+    setSizingMode( DialogSizingMode.FILL_VIEWPORT );
+    setWidthCategory( DialogWidthCategory.SMALL );
+
     scheduleParamsWizardPanel = new ScheduleParamsWizardPanel( filePath );
     IWizardPanel[] wizardPanels = { scheduleParamsWizardPanel };
     setWizardPanels( wizardPanels );
@@ -130,8 +131,8 @@ public class ScheduleParamsDialog extends AbstractWizardDialog {
     setParametersUrl( EnvironmentHelper.getFullyQualifiedURL() + "api/repos/" + urlPath + "/parameterUi" + urlParams ); //$NON-NLS-1$ //$NON-NLS-2$
     wizardDeckPanel.setHeight( "100%" ); //$NON-NLS-1$
 
-    wizardDeckPanel.getElement().getParentElement().addClassName( "schedule-dialog-content" );
-    wizardDeckPanel.getElement().getParentElement().removeClassName( "dialog-content" );
+    setSize( "650px", "450px" );
+
     addStyleName( "schedule-params-dialog" );
   }
 

@@ -269,11 +269,6 @@ public class NewScheduleDialog extends PromptDialogBox {
 
 
     setContent( content );
-    content.getElement().getParentElement().addClassName( "schedule-dialog-content" );
-    content.getElement().getParentElement().addClassName( "schedule-dialog-content-crystal" );
-    content.getElement().getParentElement().addClassName( "schedule-dialog-content-onyx" );
-    content.getElement().getParentElement().removeClassName( "dialog-content" );
-    content.getElement().getParentElement().getStyle().clearPadding();
     content.getElement().getStyle().clearHeight();
     content.getParent().setHeight( "100%" );
     content.getElement().getParentElement().getStyle().setVerticalAlign( VerticalAlign.TOP );

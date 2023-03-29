@@ -224,9 +224,6 @@ public class ScheduleRecurrenceDialog extends AbstractWizardDialog {
     }
     setupExisting( jsJob );
 
-    wizardDeckPanel.getElement().getParentElement().addClassName( "schedule-dialog-content" );
-    wizardDeckPanel.getElement().getParentElement().removeClassName( "dialog-content" );
-
     //setHeight("100%"); //$NON-NLS-1$
     setSize( "650px", "450px" );
     addStyleName( "schedule-recurrence-dialog" );

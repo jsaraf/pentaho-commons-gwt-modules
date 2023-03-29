@@ -74,8 +74,6 @@ public class ScheduleEmailDialog extends AbstractWizardDialog {
     this.setWizardPanels( wizardPanels );
     setPixelSize( 635, 375 );
     wizardDeckPanel.setHeight( "100%" ); //$NON-NLS-1$
-    wizardDeckPanel.getElement().getParentElement().addClassName( "schedule-dialog-content" );
-    wizardDeckPanel.getElement().getParentElement().removeClassName( "dialog-content" );
     setSize( "650px", "450px" );
     addStyleName( "schedule-email-dialog" );
   }

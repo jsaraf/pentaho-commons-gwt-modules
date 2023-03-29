@@ -18,6 +18,7 @@
 package org.pentaho.gwt.widgets.client.wizards;
 
 import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.RequiresResize;
 
 /**
  * @author wseyler
@@ -25,7 +26,7 @@ import com.google.gwt.user.client.ui.DockPanel;
  *         Abstract class for implenenting a wizard panel (step). Each step has it's own instance of this class. So a
  *         wizard with 5 steps will have 5 distince implementations of this class to display for each step.
  */
-public abstract class AbstractWizardPanel extends DockPanel implements IWizardPanel {
+public abstract class AbstractWizardPanel extends DockPanel implements IWizardPanel, RequiresResize {
 
   private static final String WIZARD_PANEL = "pentaho-wizard-panel"; //$NON-NLS-1$
   protected boolean canContinue = false;
@@ -132,4 +133,8 @@ public abstract class AbstractWizardPanel extends DockPanel implements IWizardPa
     return userData;
   }
 
+  @Override
+  public void onResize() {
+    // NOP
+  }
 }

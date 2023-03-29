@@ -73,8 +73,10 @@
   /* LAYOUT GLOBAL */
   --text-block-max-width: 75ch;
 
-  --typ-body-font-size: 14px;
-  --typ-body-line-height: 17px;
+  --typ-body-font-size-px: 14;
+  --typ-body-line-height-px: 17;
+  --typ-body-font-size: calc(1px * var(--typ-body-font-size-px));
+  --typ-body-line-height: calc(1px * var(--typ-body-line-height-px));
 
   /* Set H and V space between layout cols and rows.
      Or, use the helper classes: .with-layout-gap-... for predefined values.
@@ -99,9 +101,9 @@
   --input-border-width: 1px;
   --input-padding-v: 0.5em;
   --input-outer-height: calc(
-      2 * var(--input-border-width) +
-      2 * var(--input-padding-v) +
-      var(--typ-body-line-height));
+          2 * var(--input-border-width) +
+          2 * var(--input-padding-v) +
+          1em * var(--typ-body-font-size-px) / var(--typ-body-font-size-px));
 }
 
 @media (max-height: 720px) {
@@ -128,6 +130,9 @@ html.bootstrap body {
 
   /* Increase specificity to override Widgets.css focus rule (> 0-2-1) */
 input:focus-visible:focus-visible:focus-visible,
+
+  /* Increase specif. to override bootstrap-namespaced.css (> 0-2-1) */
+.bootstrap select:focus-visible:focus-visible,
 
   /* Increase specif. to override bootstrap-namespaced.css (> 0-3-1) */
 .bootstrap input:focus-visible:focus-visible:focus-visible  {
@@ -271,11 +276,11 @@ input[type='text']#displayNameText {
 
 input#rowsNumberInput,
 div#widget_dijit_form_NumberTextBox_0 {
-    margin-top: 3px;
+  margin-top: 3px;
 }
 
 input#dijit_form_NumberTextBox_0 {
-    height: inherit;
+  height: inherit;
 }
 
 SELECT,
@@ -372,7 +377,7 @@ table#contentCleanerPanel > tbody > tr > td > table {
 }
 
 input.ldapPasswordInput.authValue.adminField {
-    height: auto;
+  height: auto;
 }
 
 .soria .dijitTreeRowSelected {
@@ -407,7 +412,7 @@ input[type="password"] {
 .gwt-PasswordTextBox,
 input,
 input[type="password"]:focus {
-	border: 1px solid #414141;
+  border: 1px solid #414141;
 }
 
 .scroll-panel {
@@ -420,33 +425,6 @@ input[type="password"]:focus {
 .pentaho-page-background {
   background: url('images/bg_page.png') repeat-x top left;
   background-color: #FFF;
-}
-
-#pucHeader {
-  display: block;
-  height: 50px;
-  /*background: #005DA6; value from sapphire theme */
-  background: #f8f8f6;
-  filter: none;
-  -webkit-box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0 5px rgba(0, 0, 0, 0.5);
-  padding: 30px 0 0;
-  position: relative;
-  border-top: 4px solid #cc0000;
-}
-
-#mainMenubar > table {
-  border: 0 none;
-  border-spacing: 0;
-}
-
-#pucHeader #pucPerspectives {
-  padding: 3px;
-}
-
-#pucHeader #pucPerspectives .mantle-perspective-switcher {
-  height: auto;
 }
 
 .gwt-MenuBarPopup + .gwt-MenuBarPopup {
@@ -565,10 +543,6 @@ div#reportControlPanel select {
 div#reportControlPanel select[style*="overflow-y: scroll"] {
   height: auto;
   background: none;
-}
-
-form#REPORT_FORMAT_TYPE {
-  margin-left: -15px;
 }
 
 form#REPORT_FORMAT_TYPE p {
@@ -1112,7 +1086,6 @@ div#FilterPanel div.pentaho-toggle-button-up button {
 :where(.responsive) .gwt-v-panel > * > * > * > :where(.flex-column) {
   flex: var(--priv-flex-items, inherit);
 }
-
 /* endregion */
 
 /* region Modifiers: gap-, flex-, ... */
@@ -1228,36 +1201,16 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
   background: url('../images/wt_transparent.png') repeat;*/
 }
 
-.IE8 #browse-properties-dialog.new-schedule-dialog .schedule-dialog-content {
-  height: 425px !important;
-}
-
 .IE9 #browse-properties-dialog.new-schedule-dialog {
   height: 500px !important;
-}
-
-.IE9 #browse-properties-dialog.new-schedule-dialog .schedule-dialog-content {
-  height: 415px !important;
 }
 
 .IE9 .schedule-recurrence-dialog {
   height: 500px !important;
 }
 
-.IE9 .schedule-recurrence-dialog .schedule-dialog-content {
-  height: 430px !important;
-}
-
 .IE9 .schedule-params-dialog {
   height: 500px !important;
-}
-
-.IE9 .schedule-params-dialog .schedule-dialog-content {
-  height: 430px !important;
-}
-
-.IE9 .schedule-email-dialog .schedule-dialog-content {
-  height: 430px !important;
 }
 
 .IE10 #browse-properties-dialog.new-schedule-dialog {
@@ -1268,20 +1221,8 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
   height: 500px !important;
 }
 
-.IE10 .schedule-recurrence-dialog .schedule-dialog-content {
-  height: 430px !important;
-}
-
 .IE10 .schedule-params-dialog {
   height: 500px !important;
-}
-
-.IE10 .schedule-params-dialog .schedule-dialog-content {
-  height: 430px !important;
-}
-
-.IE10 .schedule-email-dialog .schedule-dialog-content {
-  height: 430px !important;
 }
 
 .IE .schedule-recurrence-dialog {
@@ -1337,11 +1278,7 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
 }
 
 .pentaho-dialog .button-panel .pentaho-button {
-  margin-left: 10px;
-}
-
-.inner-button-wrapper > tbody > tr > td:first-child > .pentaho-button#okButton-run-in-background {
-  margin-right: var(--layout-gap-h) !important;
+  margin-left: 10px !important;
 }
 
 .pentaho-dialog .button-panel button,
@@ -1409,12 +1346,6 @@ For IE 9 and IE10, need to add padding to the bottom of some dialogs generated w
   display: none;
 }
 
-button#schedule-dialog-select-button {
-  border-radius: 4px 4px 4px 4px;
-  padding: 0 20px;
-  height: 33px;
-}
-
 /* Find a home for these */
 .login-dialog {
   z-index: 2000;
@@ -1477,17 +1408,17 @@ button#schedule-dialog-select-button {
      Instead, its min-width is respected, causing GS margins to eventually reach 0.
    */
   max-width: clamp(
-      var(--dialog-min-width),
-      calc(100vw - 2 * var(--dialog-ds-min-margin-h)),
-      var(--dialog-max-width));
+          var(--dialog-min-width),
+          calc(100vw - 2 * var(--dialog-ds-min-margin-h)),
+          var(--dialog-max-width));
 
   /* Dialog cannot grow taller than the viewport. Show outer V scrollbar, instead. */
   max-height: min(
-      clamp(
-          var(--dialog-min-height),
-          calc(100vh - 2 * var(--dialog-ds-min-margin-v)),
-          var(--dialog-max-height)),
-      100vh);
+          clamp(
+                  var(--dialog-min-height),
+                  calc(100vh - 2 * var(--dialog-ds-min-margin-v)),
+                  var(--dialog-max-height)),
+          100vh);
 
   padding: 0;
 }
@@ -1577,6 +1508,8 @@ button#schedule-dialog-select-button {
   flex-direction: column;
   overflow: auto;
   padding: var(--focus-ring-padding) var(--dialog-padding) var(--dialog-padding) !important;
+  height: auto !important;
+  width: auto !important;
   gap: var(--layout-gap-v) var(--layout-gap-h);
 }
 
@@ -1684,6 +1617,35 @@ button#schedule-dialog-select-button {
 }
 /* endregion */
 
+/* region AbstractWizardDialog */
+
+/* content row */
+.pentaho-wizard-dialog .dialogContent > table > tbody > tr:first-child > td {
+  display: contents;
+  flex: inherit;
+}
+
+.pentaho-wizard-steps-list {
+  /* Steps list is not used/supported in the responsive mode. */
+  display: none !important;
+}
+
+.pentaho-wizard-deck-panel,
+.pentaho-wizard-deck-panel > * {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+/* endregion */
+
+/* region Parameter UI */
+:where(.responsive).parameter-ui {
+  height: auto;
+  padding: var(--focus-ring-padding) !important;
+}
+/* endregion */
+
 /* region File Properties dialog */
 .file-properties-dialog .pentaho-tab-deck-panel > div > * {
   height: auto !important;
@@ -1714,6 +1676,76 @@ button#schedule-dialog-select-button {
 :is(.pentaho-dialog-change-password, .pentaho-dialog-new-user, .pentaho-dialog-new-role) .dialog-content input {
   width: unset !important;
 }
+/* endregion */
+
+/* region Schedule Wizard Dialogs */
+.schedule-output-location-dialog,
+.new-schedule-dialog,
+.schedule-recurrence-dialog,
+.schedule-params-dialog,
+.schedule-email-dialog {
+  --dialog-max-height: 450px;
+}
+
+button#schedule-dialog-select-button {
+  flex: 0 1 auto;
+
+  font-size: var(--typ-body-font-size);
+  line-height: var(--typ-body-line-height);
+
+  margin: 0;
+  height: var(--input-outer-height);
+  border-width: var(--input-border-width);
+  border-radius: 4px;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Output Location Dialog / Panel */
+.schedule-dialog-location-panel {
+  flex-wrap: wrap;
+}
+
+/* Parameters Dialog / Panel */
+.schedule-params-wizard-panel {
+  row-gap: 1em;
+}
+
+.schedule-params-wizard-panel .schedule-parameter-frame {
+
+  flex: 1 0 auto;
+  box-sizing: border-box;
+
+  /* Updated by JS code with the frame's content width and height */
+  --frame-content-width: initial;
+  --frame-content-height: initial;
+
+  /* Parameter ui html should use a body padding of the same + amount.
+     This allows the focus outline to "appear" to overflow the iframe,
+     while still aligning with the rest of the content of the dialog.
+     (see rule for .responsive.parameter-ui)
+   */
+  margin: calc(-1 * var(--focus-ring-padding));
+  border: 0;
+  padding: 0;
+
+  height: auto !important;
+
+  /* This will fail when --frame-content-height is not set,
+     falling back to previous declaration with auto.
+   */
+  height: calc(var(--frame-content-height, auto) - 2 * var(--focus-ring-padding)) !important;
+}
+
+/* move to anaRuby.css */
+:where(.pentaho-ana.responsive).parameter-ui #standardDialog {
+  width: 100% !important;
+}
+
 /* endregion */
 
 .glasspane {
@@ -1748,8 +1780,15 @@ button#schedule-dialog-select-button {
   border-right: solid 1px transparent;
 }
 
+/* Due to relative positioning and use of z-index, focus-ring would not appear in Firefox.
+   Placing it on the direct child instead solves it. */
 .pentaho-tabWidget:focus-visible {
-  --focus-ring-offset: calc(-1 * var(--focus-ring-width));
+  outline: none;
+}
+
+.pentaho-tabWidget:focus-visible > * {
+  outline: var(--focus-ring);
+  outline-offset: 5px;
 }
 
 .IE .pentaho-tabWidget {
@@ -4370,27 +4409,23 @@ div.dijitDateTextBox.dijitComboBox {
 
 .fileBrowserColumn .body div.folder.open > div.element > div.icon {
   background: url("images/folder_open.png") no-repeat;
-  width: 22px;
 }
 
 .fileBrowserColumn .body div.folder.open.selected > div.element > div.icon,
 .fileBrowserColumn .body div.folder.open.secondarySelected > div.element > div.icon {
   background: url("images/folder_open.png") no-repeat;
-  width: 22px;
 }
 
 .fileBrowserColumn .body div.folder > div.element > div.icon,
 .fileBrowserColumn .body div.folder.empty > div.element > div.icon,
 .fileBrowserColumn .body div.folder.open.empty > div.element > div.icon {
   background: url("images/folder_closed.png") no-repeat;
-  width: 22px;
 }
 
 .fileBrowserColumn .body div.folder > div.element:hover > div.icon,
 .fileBrowserColumn .body div.folder.empty > div.element:hover > div.icon,
 .fileBrowserColumn .body div.folder.open.empty > div.element:hover > div.icon {
   background: url("images/folder_closed.png") no-repeat;
-  width: 22px;
 }
 
 .fileBrowserColumn .body div.folder.selected > div.element > div.icon,
@@ -4400,7 +4435,6 @@ div.dijitDateTextBox.dijitComboBox {
 .fileBrowserColumn .body div.folder.empty.secondarySelected > div.element > div.icon,
 .fileBrowserColumn .body div.folder.open.empty.secondarySelected > div.element > div.icon {
   background: url("images/folder_closed.png") no-repeat;
-  width: 22px;
 }
 
 .fileBrowserColumn .body div.trash.trash > div.element > div.icon,
@@ -4439,12 +4473,16 @@ div.dijitDateTextBox.dijitComboBox {
 
 .fileBrowserColumn .body .file.icon.ktr::before {
   background-image: url("images/kettle_transformation.png");
-  background-position: 4px center;
+  background-position: calc(1em * 2/ 14) center;
+  background-size: calc(1em * 31/ 14) calc(1em * 15/ 14);
+  width: calc(1em * 18/ 14);
 }
 
 .fileBrowserColumn .body .file.icon.kjb::before {
   background-image: url("images/kettle_job.png");
-  background-position: 4px center;
+  background-position: calc(1em * 2/ 14) center;
+  background-size: calc(1em * 31/ 14) calc(1em * 15/ 14);
+  width: calc(1em * 18/ 14);
 }
 
 .fileBrowserColumn .body .file.icon.xaction::before {
@@ -4461,6 +4499,9 @@ div.dijitDateTextBox.dijitComboBox {
 
 .fileBrowserColumn .body .file.trashFolder::before {
   background-image: url("images/folder_closed.png");
+  background-position: 0 calc(1em * 2/14);
+  background-size: calc(1em * 36/14) calc(1em * 14/14);
+  width: calc(1em * 18/ 14);
 }
 
 .fileBrowserColumn .body .file.icon.cda::before {
@@ -4619,42 +4660,118 @@ div.dijitDateTextBox.dijitComboBox {
   color: #333;
 }
 
-/* added by brett to override browser styles */
+/* region override browser styles */
+
+/* Home and Browser Files perspective */
 .main-container {
   margin: 0 auto;
   max-width: 1230px;
   width: auto;
 }
 
-/* Browse Files */
+/* region Browse Files perspective */
+.browse-files-perspective body {
+  height: 100vh;
+}
+
+.browse-files-perspective.browse-files-perspective :is(.main-container, .main-container > *) {
+  position: unset;
+  padding: 0;
+  height: 100%;
+}
+
+#fileBrowser {
+  display: grid;
+  width: 100%;
+  min-height: 100%;
+
+  grid-template-areas: "folder file actions";
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: 1fr;
+}
+
+/* region .fileBrowserColumn elements  */
+.fileBrowserColumn.fileBrowserColumn.fileBrowserColumn.fileBrowserColumn {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#fileBrowserFolders {
+  grid-area: folder;
+  width: 100%;
+  min-height: 256px;
+}
+
+#fileBrowserFiles {
+  grid-area: file;
+  width: 100%;
+  margin-left: 0;
+  min-height: 256px;
+}
+
+#fileBrowserButtons {
+  grid-area: actions;
+  width: 250px;
+  height: auto !important;
+  margin-left: 0;
+}
+/* endregion .fileBrowserColumn elements  */
+
+/* region .fileBrowserColumn's .header and .body  */
 .fileBrowserColumn .header {
+  flex: none;
   height: auto;
   border: 0;
   font-size: 16px;
   line-height: 22px;
+  min-height: calc(1em * 22/16);
   color: #333333;
   padding: 0;
   margin-bottom: 10px;
   cursor: default;
   font-family: OpenSansLight, Helvetica, Arial, Sans serif;
-}
-
-#fileBrowserFiles.fileBrowserColumn .body,
-#fileBrowserFolders.fileBrowserColumn .body {
-  border: 1px solid #CCC;
-  top: 51px;
-}
-
-#fileBrowserFiles.fileBrowserColumn .body:focus-visible {
-  outline: var(--focus-ring);
-  outline-offset: var(--focus-ring-offset);
+  overflow: visible;
 }
 
 .fileBrowserColumn > .body {
+  flex: auto;
+  position: unset;
   display: flex;
   flex-direction: column;
-  flex: none;
 }
+
+:is(.fileBrowserFiles, .fileBrowserFolders) > .body {
+  border: 1px solid #CCC;
+}
+
+.fileBrowserFolders > .body {
+  /* Place focus ring inside tree nodes */
+  --focus-ring-offset: calc(-1 * var(--focus-ring-width));
+}
+
+.fileBrowserFiles > .body {
+  padding: 0;
+}
+
+.fileBrowserFiles.fileBrowserFiles > .body {
+  overflow-x: hidden;
+}
+
+@supports (-moz-appearance:none) {
+  .fileBrowserFiles > .body {
+    width: -moz-available !important;
+  }
+}
+
+.fileBrowserButtons > .body {
+  /* Ensure enough space for the focus-visible outline. */
+  padding: var(--focus-ring-padding);
+}
+/* endregion .fileBrowserColumn's .header and .body  */
+
+/* region .folder, .folders ... */
 .fileBrowserColumn > .body > .folder {
   width: max-content;
   min-width: 100%;
@@ -4674,49 +4791,30 @@ div.dijitDateTextBox.dijitComboBox {
 }
 
 .fileBrowserColumn .body .folder .element {
-  padding: 8px 0;
+  padding: 8px 8px 8px 0;
   font-size: 14px;
   font-family: opensansregular, Helvetica, Arial, Sans serif;
   position: relative;
   display: flex;
   flex-direction: row;
 }
+
 .fileBrowserColumn .body .folder .element > * {
   flex: none;
 }
+
+#fileBrowserFolders .body .folder .element > .expandCollapse {
+  width: calc(1em * 20/14);
+  height: calc(1em * 20/14);
+  background-size: calc(1em * 40/14) calc(1em * 40/14);
+}
+
 .fileBrowserColumn .body .folder .element > .title {
   flex: 1 0 auto;
+  height: unset;
 }
 
 .fileBrowserColumn .body .folder .element:hover {
-  background-color: #E0E0E0;
-}
-
-/*.fileBrowserColumn .body .folder .element:hover .icon {
-  background: url(images/folder_closed_white.png) no-repeat !important;
-}
-
-.fileBrowserColumn .body .folder .element:hover .expandCollapse {
-  background: url(images/folders-arrows.png) no-repeat bottom right !important;
-}*/
-
-#fileBrowserButtons .body {
-  top: 51px;
-  /* Ensure enough space for the focus-visible outline. */
-  padding: 8px;
-}
-
-.fileBrowserColumn .body .folder .icon {
-  margin: 0 4px;
-}
-
-.fileBrowserColumn .body .file {
-  padding: 8px;
-  font-size: 14px;
-  font-family: opensansregular, Helvetica, Arial, Sans serif;
-}
-
-.fileBrowserColumn .body .file:hover {
   background-color: #E0E0E0;
 }
 
@@ -4728,14 +4826,107 @@ div.dijitDateTextBox.dijitComboBox {
   background: rgba(204, 0, 0, 0.2);
 }
 
+#fileBrowserFolders .body .folder .icon {
+  margin: 0 4px;
+  width: calc(1em * 22/14);
+  height: auto;
+  background-size: contain;
+}
+/* endregion .folder, .folders ... */
+
+/* region .file ... */
+.fileBrowserFiles > .body > .file {
+  width: calc(100% - 2 * 8px);
+  padding: 8px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  font-family: opensansregular, Helvetica, Arial, Sans serif;
+}
+
+@supports (-moz-appearance:none) {
+  /* FF would otherwise replace the whole text with an ellipsis... */
+  .fileBrowserFiles > .body > .file {
+    text-overflow: clip;
+  }
+}
+
+.fileBrowserColumn .body .file:hover {
+  background-color: #E0E0E0;
+}
+
 .fileBrowserColumn .body .file.selected {
   background-color: rgba(204, 0, 0, 0.2);
 }
+/* endregion .file ... */
 
-#fileBrowserButtons {
-  width: 250px;
+/* region buttons */
+.fileBrowserColumn .body .separator {
+  margin: 10px 0;
+  border-top: solid 1px #CCC;
 }
 
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:link,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:visited,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:hover,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:active,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:focus {
+  padding: 4px;
+  background: none;
+  color: #7C0B2B;
+}
+
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:hover,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:active,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:focus {
+  color: #7C0B2B;
+  text-decoration: underline;
+}
+
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled],
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:link,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:visited,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:hover,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:active,
+.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:focus {
+  color: #AAAAAA;
+  text-decoration: none;
+}
+/* endregion buttons */
+
+/* region breakpoint overrides */
+@media (max-width: 880px) {
+  #fileBrowser {
+    grid-template-areas:
+			"folder actions"
+			"file actions";
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .fileBrowserButtons > .body {
+    flex: 1 0 auto;
+  }
+}
+
+@media (max-width: 550px) {
+  #fileBrowser {
+    grid-template-areas:
+			"folder"
+			"file"
+			"actions";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+}
+/* endregion breakpoint overrides */
+
+/* endregion Browse Files perspective */
+
+/* region FileChooserDialog */
 .fileChooserFilesList > * {
   border-spacing: 0;
   border-collapse: collapse;
@@ -4786,40 +4977,6 @@ div.dijitDateTextBox.dijitComboBox {
   cursor: default;
 }
 
-.fileBrowserColumn .body .separator {
-  margin: 10px 0px;
-  border-top: solid 1px #CCC;
-}
-
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:link,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:visited,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:hover,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:active,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:focus {
-  padding: 4px;
-  background: none;
-  color: #7C0B2B;
-}
-
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:hover,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:active,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn:focus {
-  color: #7C0B2B;
-  text-decoration: underline;
-}
-
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled],
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:link,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:visited,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:hover,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:active,
-.bootstrap #fileBrowserButtons.fileBrowserColumn .btn[disabled]:focus {
-  color: #AAAAAA;
-  text-decoration: none;
-}
-
-/* FileChooserDialog BEGIN */
 .fileChooser .fileChooserFilesListContainer {
   display: contents;
   flex: inherit;
@@ -4906,9 +5063,10 @@ div.dijitDateTextBox.dijitComboBox {
     display: none;
   }
 }
-/* FileChooserDialog END */
+/* endregion FileChooserDialog */
 
-/*  end browser styles */
+/* endregion override browser styles */
+
 #reportPageOutline {
   -webkit-box-shadow: 0px 2px 3px 3px rgba(0, 0, 0, .3);
   box-shadow: 0px 1px 6px 1px rgba(58, 58, 58, .1);
@@ -5594,7 +5752,7 @@ div.prompt-panel .pentaho-toggle-button-container > DIV {
   background: #FFFFFF;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false); /* IE6-9 */
   color: #7C0B2B;
-   border: none;
+  border: none;
 }
 
 .IE #deleteJoinButton,
@@ -7887,13 +8045,13 @@ div#widget_pentaho_common_DateTextBox_0 {
 }
 
 div#widget_dijit_form_TextBox_1 {
-    border-radius: 4px;
-    margin-left: 5px;
-    background-image: none;
+  border-radius: 4px;
+  margin-left: 5px;
+  background-image: none;
 }
 
 span#filterContextMenu {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 /*Angular Tree control directive*/
@@ -8567,7 +8725,7 @@ button#preview[disabled]:active {
 
 .bootstrap #recentsContianer .nav-tabs > li,
 .bootstrap #favoritesContianer .nav-tabs > li {
-/* Ensure enough space for the focus-visible outline. */
+  /* Ensure enough space for the focus-visible outline. */
   margin: 4px;
 }
 
@@ -8939,7 +9097,7 @@ body.bootstrap .modal.confirmationDialog {
 }
 
 .bootstrap .filteredPluginsContainer ul > li:hover {
-    background: #CCCCCC;
+  background: #CCCCCC;
 }
 
 .bootstrap.admin-perspective .pentaho-tab-deck-panel {
@@ -8985,12 +9143,12 @@ body.bootstrap .modal.pluginDetailDialog .pluginDetail .pluginDetailTop .pluginD
 .bootstrap .filterBar .filterContainer .multiselect .dropdown-menu > li > a:focus,
 .bootstrap .filterBar .filterContainer .multiselect .dropdown-submenu:hover > a,
 .bootstrap .filterBar .filterContainer .multiselect .dropdown-submenu:focus > a {
-    background: #E6EFF6;
+  background: #E6EFF6;
 }
 
 .bootstrap .filterBar .filterContainer .multiselect .dropdown-menu .divider {
-    margin: 9px 0;
-    background-color: #CCC;
+  margin: 9px 0;
+  background-color: #CCC;
 }
 
 .bootstrap .filteredPluginsContainer ul > li .pluginAuthor,
@@ -9055,7 +9213,7 @@ body.bootstrap .modal.confirmationDialog .dialog div.body {
 }
 
 .xul-label-disabled{
-	color: #666 !important;
+  color: #666 !important;
 }
 
 .is-hidden {
@@ -9071,10 +9229,6 @@ body.bootstrap .modal.confirmationDialog .dialog div.body {
 .tree-scroll-panel > * > :focus-visible {
   z-index: 0 !important;
   outline: var(--focus-ring) !important;
-}
-
-#refreshBrowserIcon {
-  margin: var(--focus-ring-padding);
 }
 
 /* Dialog uses empty rows for V-spacing. */
@@ -9111,85 +9265,6 @@ body.bootstrap .modal.confirmationDialog .dialog div.body {
 .import-dialog-disclosure-content-panel {
   flex: auto;
 }
-
-/* Start region Browse Files responsive - BEGIN */
-#fileBrowser {
-  display: grid;
-  width: 100%;
-  grid-template-areas:
-    "folder file actions";
-  grid-template-columns: 1fr 1fr auto;
-  grid-template-rows: 1fr;
-}
-
-@media (max-width: 880px) {
-  #fileBrowser {
-    display: grid;
-    width: 100%;
-    grid-template-areas:
-			"folder actions"
-			"file actions";
-    grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr 1fr;
-  }
-}
-@media (max-width: 550px) {
-  #fileBrowser {
-    display: grid;
-    width: 100%;
-    grid-template-areas:
-			"folder"
-			"file"
-			"actions";
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-  }
-}
-
-#fileBrowserFolders {
-  grid-area: folder;
-  width: 100%;
-  min-height: 256px;
-}
-
-#fileBrowserFiles {
-  grid-area: file;
-  width: 100%;
-  margin-left: 0px;
-  min-height: 256px;
-}
-
-#fileBrowserButtons {
-  grid-area: actions;
-  margin-left: 0px;
-}
-
-#fileBrowserButtons {
-  height: auto !important;
-}
-
-#fileBrowserFiles .body {
-  overflow-x: hidden !important;
-  width:auto !important;
-}
-
-@supports (-moz-appearance:none) {
-  #fileBrowserFiles .body {
-    width:-moz-available !important;
-  }
-}
-
-#fileBrowserButtons .body {
-  overflow: visible !important;
-}
-
-#fileBrowserFiles .body .file {
-  width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-/* End region Browse Files responsive - End */
 
 /* responsive content for home page above 810px and below 930px */
 @media (max-width:930px) {
@@ -9315,4 +9390,65 @@ body.bootstrap .modal.confirmationDialog .dialog div.body {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
+
+/* endregion Main Toolbar */
+
+.schedulesPanel .toolbar {
+  background: none;
+  border: 0;
+  margin-bottom: 5px;
+}
+
+.schedulesPanel .pentaho-table th {
+  font-size: 12px;
+  border-spacing: 0;
+  color: #FFF;
+  padding: 8px 10px 10px 10px;
+  font-weight: normal;
+}
+
+#generated-content-location {
+  flex: auto;
+  margin-bottom: unset;
+  border-radius: 4px;
+}
+
+.schedule-label {
+  margin-top: unset;
+  margin-bottom: unset;
+  color: #666666;
+}
+
+/* NOTE: --flex-items is not working for contained Flex Panels */
+.schedule-output-location-dialog .dialog-content > table > tbody > tr > td > * {
+  flex: none;
+}
+
+#schedule-name-input {
+  width: unset;
+  margin-bottom: unset;
+  flex: 4 1 0;
+}
+
+.schedule-timestamp-listbox {
+  margin-left: unset;
+  margin-bottom: unset;
+  min-width: 200px;
+  width: unset;
+}
+
+.schedule-name-panel {
+  flex-wrap: wrap;
+  --flex-items: 1 1 0;
+}
+
+.schedule-caption-panel {
+  margin-top: unset;
+}
+
+.schedule-dialog-button-panel {
+  padding-right: 3px;
+  padding-bottom: 2px;
+  width: 100%;
 }

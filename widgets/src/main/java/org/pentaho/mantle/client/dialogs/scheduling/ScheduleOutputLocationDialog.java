@@ -85,7 +85,7 @@ public abstract class ScheduleOutputLocationDialog extends PromptDialogBox {
     createUI();
     setupCallbacks();
     setResponsive( true );
-    setSizingMode( DialogSizingMode.FILL_VIEWPORT_WIDTH );
+    setSizingMode( DialogSizingMode.FILL_VIEWPORT );
     setWidthCategory( DialogWidthCategory.SMALL );
   }
 

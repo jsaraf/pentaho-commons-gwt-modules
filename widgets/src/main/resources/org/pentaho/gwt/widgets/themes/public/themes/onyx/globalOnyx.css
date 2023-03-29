@@ -177,10 +177,6 @@ input[type='text']#paramValueTextBox {
     border: inherit;
 }
 
-.schedule-dialog-content-onyx {
-  padding: 5px 10px 10px 10px;
-}
-
 .pentaho-toggle-button {
     /* fallback color */
     background: #000000;
@@ -402,11 +398,6 @@ has no buttons add an addition class to your element, pentaho-dialog-buttonless,
 .IE .pentaho-dialog {
     border: 1px solid #000000;
     background: url('../images/wt_transparent.png') repeat;
-}
-
-
-.IE8 #browse-properties-dialog.new-schedule-dialog .schedule-dialog-content{
-  height: 425px !important;
 }
 
 .IE8 #browse-properties-dialog.new-schedule-dialog{
